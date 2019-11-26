@@ -4,7 +4,14 @@ A Camunda Modeler plugin that makes tasks resizable. In case your _Grundstücksv
 
 ![Screencast](docs/screencast.gif)
 
-## Building
+## Using the Plugin
+
+1. Download ZIP
+2. Extract
+3. Move to [user data directory](https://github.com/camunda/camunda-modeler/tree/master/docs/search-paths#user-data-directory)
+4. Restart Camunda Modeler
+
+## Building the Plugin
 
 Install dependencies:
 
@@ -16,9 +23,11 @@ Package plugin to `client/client-bundle.js`:
 
 ```sh
 npm run bundle
+```
 
-# or
+or
 
+```sh
 npm run bundle:watch
 ```
 
