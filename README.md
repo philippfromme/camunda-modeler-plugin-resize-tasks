@@ -1,3 +1,5 @@
+[![Compatible with Camunda Modeler version 4.0](https://img.shields.io/badge/Camunda%20Modeler-4.0+-blue.svg)](https://github.com/camunda/camunda-modeler)
+
 # Camunda Modeler Plugin: Resize Tasks
 
 A Camunda Modeler plugin that makes tasks resizable. In case your _Grundstücksverkehrsgenehmigungszuständigkeitsübertragungsverordnung_ doesn't fit.
