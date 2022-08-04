@@ -576,24 +576,28 @@ RuleProvider.prototype.init = function() {};
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
-    ctor.super_ = superCtor
-    ctor.prototype = Object.create(superCtor.prototype, {
-      constructor: {
-        value: ctor,
-        enumerable: false,
-        writable: true,
-        configurable: true
-      }
-    });
+    if (superCtor) {
+      ctor.super_ = superCtor
+      ctor.prototype = Object.create(superCtor.prototype, {
+        constructor: {
+          value: ctor,
+          enumerable: false,
+          writable: true,
+          configurable: true
+        }
+      })
+    }
   };
 } else {
   // old school shim for old browsers
   module.exports = function inherits(ctor, superCtor) {
-    ctor.super_ = superCtor
-    var TempCtor = function () {}
-    TempCtor.prototype = superCtor.prototype
-    ctor.prototype = new TempCtor()
-    ctor.prototype.constructor = ctor
+    if (superCtor) {
+      ctor.super_ = superCtor
+      var TempCtor = function () {}
+      TempCtor.prototype = superCtor.prototype
+      ctor.prototype = new TempCtor()
+      ctor.prototype.constructor = ctor
+    }
   }
 }
 
@@ -843,7 +847,7 @@ function reduce(collection, iterator, result) {
  */
 
 function every(collection, matcher) {
-  return reduce(collection, function (matches, val, key) {
+  return !!reduce(collection, function (matches, val, key) {
     return matches && matcher(val, key);
   }, true);
 }
@@ -1212,6 +1216,10 @@ function merge(target) {
     }
 
     forEach(source, function (sourceVal, key) {
+      if (key === '__proto__') {
+        return;
+      }
+
       var targetVal = target[key];
 
       if (isObject(sourceVal)) {
