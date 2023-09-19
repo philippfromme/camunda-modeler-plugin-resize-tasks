@@ -1,11 +1,11 @@
 {
   "name": "camunda-modeler-plugin-resize-tasks",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Resize BPMN Tasks",
   "main": "index.js",
   "scripts": {
     "all": "run-s bundle",
-    "bundle": "webpack",
+    "bundle": "export NODE_OPTIONS=--openssl-legacy-provider && webpack",
     "bundle:watch": "webpack --watch"
   },
   "repository": {
